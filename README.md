@@ -23,7 +23,7 @@ Lenguajes de programación (CCOMP 7-1)
     
 ### 3. En caso que la estamina se acabe, la velocidad de los movimientos básicos (andar y girar), se reducirá a la mitad.
    
-   Encargado: Jeysson
+   Encargado: Yato-sama
    
    Estado: Incompleto
    

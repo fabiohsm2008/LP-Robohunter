@@ -101,6 +101,6 @@ la fuerza depende de la distancia.
 
    Encargado: Luis 
    
-   Estado: Incompleto
+   Estado: Completo +-
    
-   Comentarios:
+   Comentarios: Ya no se añaden bots de forma estática, para probar es necesario hacer un package o volver a añadirlos en la función                     initJugadores()

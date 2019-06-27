@@ -17,11 +17,15 @@ import java.util.Random;
  * @author carlos
  *
  */
+
 public class Tablero {
-	private static final int TAMANHO = 5;
+	private static final int TAMANHO = 7;
 	private static Tablero instance;
 	private Robot jugador1;
 	private Robot jugador2;
+	public static int paradaColumna;
+	public static int paradaFila;
+	
 
 	/**
 	 * @return la única istancia de tablero
@@ -98,6 +102,8 @@ public class Tablero {
 			build.append('=');
 		}
 		build.append('\n');
+		paradaColumna=TAMANHO/2;
+		paradaFila=TAMANHO/2;
 
 		for (int i = 0; i < TAMANHO; i++) {
 
@@ -107,7 +113,9 @@ public class Tablero {
 					build.append(faceFrom1[0]);
 				} else if (jugador2 != null && i == jugador2.posF && j == jugador2.posC) {
 					build.append(faceFrom2[0]);
-				} else {
+				} else if(i==paradaColumna && j==paradaFila){
+					build.append("PP");
+				}else {
 					build.append("  ");
 				}
 			}
@@ -119,7 +127,9 @@ public class Tablero {
 					build.append(faceFrom1[1]);
 				} else if (jugador2 != null && i == jugador2.posF && j == jugador2.posC) {
 					build.append(faceFrom2[1]);
-				} else {
+				} else if(i==paradaColumna && j==paradaFila){
+					build.append("PP");
+				}else {
 					build.append("  ");
 				}
 			}

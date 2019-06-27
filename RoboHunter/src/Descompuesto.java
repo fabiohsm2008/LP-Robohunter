@@ -45,6 +45,7 @@ public class Descompuesto extends Robot {
 	public void estrategia() {
 		Random rd = new Random();
 		while (tieneEstamina()) {
+			
 			switch (rd.nextInt(4)) {
 			case 0:
 				irNorte();

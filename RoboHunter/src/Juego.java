@@ -33,6 +33,7 @@ public class Juego {
 		Tablero tablero = null;
 
 		int opcion = printMenu();
+
 		while (opcion != 0) {
 			switch (opcion) {
 			case 1:

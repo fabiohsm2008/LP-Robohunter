@@ -42,6 +42,8 @@ public class PartidaMultiple extends Partida {
 
 	private void unJuego() {
 		for (int turnos = 0; turnos < MAX_TURNOS; turnos++) {
+			jugador1.recibeEstamina(MAX_ESTAMINA);
+			jugador2.recibeEstamina(MAX_ESTAMINA);
 			if (jugador1.disparoEnSuTurno() && jugador1.objetivoEnMira()) {
 				if (jugador2.disparoEnSuTurno() && jugador2.objetivoEnMira()) {
 					winner = null;
@@ -64,8 +66,14 @@ public class PartidaMultiple extends Partida {
 				return;
 			}
 
-			jugador1.recibeEstamina(MAX_ESTAMINA);
-			jugador2.recibeEstamina(MAX_ESTAMINA);
+			
+			if(jugador1.detectarParada()){
+				jugador1.recibeEstamina(Partida.MAX_ESTAMINA);
+			}
+			if(jugador2.detectarParada()){
+				jugador2.recibeEstamina(Partida.MAX_ESTAMINA);
+			}
+
 			jugador1.estrategia();
 			jugador2.estrategia();
 		}
@@ -107,5 +115,6 @@ public class PartidaMultiple extends Partida {
 	public Robot getWinner() {
 		return winner;
 	}
+
 
 }

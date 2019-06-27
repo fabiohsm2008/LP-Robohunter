@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.lang.reflect.*;
 
 /**
  * CalebSoft
@@ -21,7 +22,27 @@ public class Juego {
 	private static List<Robot> jugadores = new ArrayList<>();
 
 	public static void initJugadores() {
-		jugadores.add(new Descompuesto());
+		ClassLoader loader = Juego.class.getClassLoader();
+		String paquete="Ejemplo";//Ingresar el nombre del paquete
+		String[] robots= {"Ejemplo1","Ejemplo2"};// Ingresar el nombre de las clases considerando mayusculas y minusculas
+		for(String robot : robots) {
+			try {
+				Class bot=loader.loadClass(paquete+"."+robot);
+				try {
+					Constructor constructor = bot.getConstructor();
+							
+					Robot nuevo = (Robot) constructor.newInstance();
+					jugadores.add(nuevo);
+					
+
+				} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | SecurityException | NoSuchMethodException e) {
+					System.out.println("Error al instanciar la clase " + robot);
+				}
+				
+			} catch (ClassNotFoundException e) {
+				System.out.println("Clase "+ robot + " no encontrada");
+			}
+		}
 	}
 
 	public static void main(String[] args) {

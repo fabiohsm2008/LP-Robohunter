@@ -46,6 +46,7 @@ public class Descompuesto extends Robot {
 		Random rd = new Random();
 		Robot oponente=objetivoEnMira();
 		while (tieneEstamina()) {
+			
 			switch (rd.nextInt(4)) {
 			case 0:
 				irNorte();

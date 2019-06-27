@@ -257,6 +257,12 @@ public abstract class Robot {
 		return estamina > 0;
 	}
 
+	public boolean detectarParada(){
+		int filaRobot=getPosF();
+		int columnaRobot=getPosC();
+		return (filaRobot==Tablero.paradaFila && columnaRobot==Tablero.paradaColumna);
+	}
+
 	public void recibeEstamina(int estamina) {
 		this.estamina = estamina;
 	}

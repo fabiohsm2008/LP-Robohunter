@@ -21,6 +21,7 @@ public class PartidaSimple extends Partida implements Runnable {
 	public PartidaSimple(Robot jugador1, Robot jugador2) {
 		super(jugador1, jugador2);
 		// TODO Auto-generated constructor stub
+		
 	}
 
 	@Override
@@ -52,6 +53,10 @@ public class PartidaSimple extends Partida implements Runnable {
 	 */
 	@Override
 	public void jugar() {
+
+		jugador1.recibeEstamina(MAX_ESTAMINA);
+		jugador2.recibeEstamina(MAX_ESTAMINA);
+
 		if (jugador1.disparoEnSuTurno() && jugador1.objetivoEnMira().valor) {
 			if (jugador2.disparoEnSuTurno() && jugador2.objetivoEnMira().valor) {
 				winner = null;
@@ -75,8 +80,13 @@ public class PartidaSimple extends Partida implements Runnable {
 			return;
 		}
 
-		jugador1.recibeEstamina(MAX_ESTAMINA);
-		jugador2.recibeEstamina(MAX_ESTAMINA);
+		if(jugador1.detectarParada()){
+			jugador1.recibeEstamina(Partida.MAX_ESTAMINA);
+		}
+		if(jugador2.detectarParada()){
+			jugador2.recibeEstamina(Partida.MAX_ESTAMINA);
+		}
+
 		jugador1.estrategia();
 		jugador2.estrategia();
 	}
@@ -90,4 +100,5 @@ public class PartidaSimple extends Partida implements Runnable {
 	public void imprimirResultado() {
 		System.out.println("El ganador es: " + winner.toString());
 	}
+	
 }

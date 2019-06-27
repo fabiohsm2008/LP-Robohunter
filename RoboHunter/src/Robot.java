@@ -23,6 +23,9 @@ public abstract class Robot {
 	protected Direccion direccion;
 	private boolean disparo;
 	private int estamina;
+	public int danio=10;
+	public boolean valor; //necesito un valor de retorno para objetivoEnMira
+	public int fuerza=0; //fuerza del ataque
 
 	private final Tablero tablero = Tablero.getInstance();
 
@@ -178,7 +181,31 @@ public abstract class Robot {
 	 * 
 	 * @return verdadero si el objetivo está a no más de 3 pasos en frente tuyo.
 	 */
-	public boolean objetivoEnMira() {
+	public boolean objetivoEnMira2() {
+		switch (direccion) {
+		case NORTE:
+			//return objetivoEnMira(posF, posC, -1, 0);
+		case SUR:
+			//return objetivoEnMira(posF, posC, 1, 0);
+		case ESTE:
+			//return objetivoEnMira(posF, posC, 0, 1);
+		case OESTE:
+			//return objetivoEnMira(posF, posC, 0, -1);
+		case NORESTE:
+			//return objetivoEnMira(posF, posC, -1, 1);
+		case NOROESTE:
+			//return objetivoEnMira(posF, posC, -1, -1);
+		case SURESTE:
+			//return objetivoEnMira(posF, posC, 1, 1);
+		case SUROESTE:
+			//return objetivoEnMira(posF, posC, 1, -1);
+
+		default:
+			break;
+		}
+		return false;
+	}
+	public Robot objetivoEnMira() {
 		switch (direccion) {
 		case NORTE:
 			return objetivoEnMira(posF, posC, -1, 0);
@@ -200,10 +227,11 @@ public abstract class Robot {
 		default:
 			break;
 		}
-		return false;
+		valor=false;
+		return this;
 	}
 
-	private boolean objetivoEnMira(int fila, int columna, int despFila, int despColumna) {
+	private boolean objetivoEnMira2(int fila, int columna, int despFila, int despColumna) {
 		int k = 3;
 
 		Robot oponente = null;
@@ -225,8 +253,43 @@ public abstract class Robot {
 		}
 		return false;
 	}
+	
+	private Robot objetivoEnMira(int fila, int columna, int despFila, int despColumna) {
+		int k = 4; // va a disparar a una distancia menor a  4 
+		Robot oponente = null;
+		if (tablero.getJugador1() == this) {
+			oponente = tablero.getJugador2();
+		} else {
+			oponente = tablero.getJugador1();
+		}
 
-	public void dispara() {
+		while (k > 0 && tablero.esValido(fila + despFila) && tablero.esValido(columna + despColumna)) {
+			fila += despFila;
+			columna += despColumna;
+
+			if (oponente.getPosF() == fila && oponente.getPosC() == columna) {
+				this.fuerza=k;
+				oponente.valor=true;
+				return oponente;
+			}
+
+			k--;
+		}
+		oponente.valor=false;
+		return oponente;
+	}
+	
+	public void ataque(Robot oponente) {
+		oponente. danio=oponente.danio-this.fuerza; //daño
+		
+	}
+
+	public void dispara2() {
+		
+		this.disparo = true;
+	}
+	public void dispara(Robot oponente) {
+		oponente.danio = oponente.danio-(fuerza);		
 		this.disparo = true;
 	}
 

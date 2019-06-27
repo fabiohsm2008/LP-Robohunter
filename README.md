@@ -88,12 +88,11 @@ Lenguajes de programación (CCOMP 7-1)
    
 ### 9. Establecer criterio de distancia:
 
-* Si el objetivo está entre 5 a 10, la efectividad del arma será 50%
-* Si el objetivo está entre 1 a 4, la efectividad del arma será 100%
+la fuerza depende de la distancia.
 
    Encargada: Diana 
    
-   Estado: Incompleto
+   Estado: completo
    
    Comentarios:
    

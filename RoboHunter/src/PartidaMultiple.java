@@ -40,35 +40,7 @@ public class PartidaMultiple extends Partida {
 		}
 	}
 
-	private void unJuego2() {
-		for (int turnos = 0; turnos < MAX_TURNOS; turnos++) {
-			if (jugador1.disparoEnSuTurno() && jugador1.objetivoEnMira().valor) {
-				if (jugador2.disparoEnSuTurno() && jugador2.objetivoEnMira().valor) {
-					winner = null;
-					winner = jugador1;
-				}
-			} else if (jugador2.disparoEnSuTurno() && jugador2.objetivoEnMira().valor) {
-				winner = jugador2;
-			}
-
-			if (winner == null) {
-				jugador1.recarga();
-				jugador2.recarga();
-			} else {
-				if (winner == jugador1) {
-					victoriasJugador1++;
-				} else {
-					victoriasJugador2++;
-				}
-				return;
-			}
-
-			jugador1.recibeEstamina(MAX_ESTAMINA);
-			jugador2.recibeEstamina(MAX_ESTAMINA);
-			jugador1.estrategia();
-			jugador2.estrategia();
-		}
-	}
+	
 	private void unJuego() {
 		for (int turnos = 0; turnos < MAX_TURNOS; turnos++) {
 			if (jugador1.disparoEnSuTurno() && jugador1.objetivoEnMira().valor) {

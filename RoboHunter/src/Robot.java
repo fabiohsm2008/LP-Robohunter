@@ -181,30 +181,7 @@ public abstract class Robot {
 	 * 
 	 * @return verdadero si el objetivo está a no más de 3 pasos en frente tuyo.
 	 */
-	public boolean objetivoEnMira2() {
-		switch (direccion) {
-		case NORTE:
-			//return objetivoEnMira(posF, posC, -1, 0);
-		case SUR:
-			//return objetivoEnMira(posF, posC, 1, 0);
-		case ESTE:
-			//return objetivoEnMira(posF, posC, 0, 1);
-		case OESTE:
-			//return objetivoEnMira(posF, posC, 0, -1);
-		case NORESTE:
-			//return objetivoEnMira(posF, posC, -1, 1);
-		case NOROESTE:
-			//return objetivoEnMira(posF, posC, -1, -1);
-		case SURESTE:
-			//return objetivoEnMira(posF, posC, 1, 1);
-		case SUROESTE:
-			//return objetivoEnMira(posF, posC, 1, -1);
 
-		default:
-			break;
-		}
-		return false;
-	}
 	public Robot objetivoEnMira() {
 		switch (direccion) {
 		case NORTE:
@@ -231,31 +208,9 @@ public abstract class Robot {
 		return this;
 	}
 
-	private boolean objetivoEnMira2(int fila, int columna, int despFila, int despColumna) {
-		int k = 3;
 
-		Robot oponente = null;
-		if (tablero.getJugador1() == this) {
-			oponente = tablero.getJugador2();
-		} else {
-			oponente = tablero.getJugador1();
-		}
-
-		while (k > 0 && tablero.esValido(fila + despFila) && tablero.esValido(columna + despColumna)) {
-			fila += despFila;
-			columna += despColumna;
-
-			if (oponente.getPosF() == fila && oponente.getPosC() == columna) {
-				return true;
-			}
-
-			k--;
-		}
-		return false;
-	}
-	
 	private Robot objetivoEnMira(int fila, int columna, int despFila, int despColumna) {
-		int k = 4; // va a disparar a una distancia menor a  4 
+		int k = 10; // va a disparar a una distancia menor a  10
 		Robot oponente = null;
 		if (tablero.getJugador1() == this) {
 			oponente = tablero.getJugador2();
@@ -284,10 +239,7 @@ public abstract class Robot {
 		
 	}
 
-	public void dispara2() {
-		
-		this.disparo = true;
-	}
+
 	public void dispara(Robot oponente) {
 		oponente.danio = oponente.danio-(fuerza);		
 		this.disparo = true;

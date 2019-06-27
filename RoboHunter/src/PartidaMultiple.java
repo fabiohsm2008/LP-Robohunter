@@ -40,17 +40,20 @@ public class PartidaMultiple extends Partida {
 		}
 	}
 
+	
 	private void unJuego() {
 		for (int turnos = 0; turnos < MAX_TURNOS; turnos++) {
+      
 			jugador1.recibeEstamina(MAX_ESTAMINA);
 			jugador2.recibeEstamina(MAX_ESTAMINA);
-			if (jugador1.disparoEnSuTurno() && jugador1.objetivoEnMira()) {
-				if (jugador2.disparoEnSuTurno() && jugador2.objetivoEnMira()) {
+
+			if (jugador1.disparoEnSuTurno() && jugador1.objetivoEnMira().valor) {
+				if (jugador2.disparoEnSuTurno() && jugador2.objetivoEnMira().valor && jugador2.danio>0) {
 					winner = null;
 				} else {
 					winner = jugador1;
 				}
-			} else if (jugador2.disparoEnSuTurno() && jugador2.objetivoEnMira()) {
+			} else if (jugador2.disparoEnSuTurno() && jugador2.objetivoEnMira().valor && jugador1.danio >0) {
 				winner = jugador2;
 			}
 

@@ -23,6 +23,9 @@ public abstract class Robot {
 	protected Direccion direccion;
 	private boolean disparo;
 	private int estamina;
+	public int danio=10;
+	public boolean valor; //necesito un valor de retorno para objetivoEnMira
+	public int fuerza=0; //fuerza del ataque
 
 	private final Tablero tablero = Tablero.getInstance();
 
@@ -178,7 +181,8 @@ public abstract class Robot {
 	 * 
 	 * @return verdadero si el objetivo está a no más de 3 pasos en frente tuyo.
 	 */
-	public boolean objetivoEnMira() {
+
+	public Robot objetivoEnMira() {
 		switch (direccion) {
 		case NORTE:
 			return objetivoEnMira(posF, posC, -1, 0);
@@ -200,12 +204,13 @@ public abstract class Robot {
 		default:
 			break;
 		}
-		return false;
+		valor=false;
+		return this;
 	}
 
-	private boolean objetivoEnMira(int fila, int columna, int despFila, int despColumna) {
-		int k = 3;
 
+	private Robot objetivoEnMira(int fila, int columna, int despFila, int despColumna) {
+		int k = 10; // va a disparar a una distancia menor a  10
 		Robot oponente = null;
 		if (tablero.getJugador1() == this) {
 			oponente = tablero.getJugador2();
@@ -218,15 +223,25 @@ public abstract class Robot {
 			columna += despColumna;
 
 			if (oponente.getPosF() == fila && oponente.getPosC() == columna) {
-				return true;
+				this.fuerza=k;
+				oponente.valor=true;
+				return oponente;
 			}
 
 			k--;
 		}
-		return false;
+		oponente.valor=false;
+		return oponente;
+	}
+	
+	public void ataque(Robot oponente) {
+		oponente. danio=oponente.danio-this.fuerza; //daño
+		
 	}
 
-	public void dispara() {
+
+	public void dispara(Robot oponente) {
+		oponente.danio = oponente.danio-(fuerza);		
 		this.disparo = true;
 	}
 

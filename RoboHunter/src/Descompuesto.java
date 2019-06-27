@@ -44,6 +44,7 @@ public class Descompuesto extends Robot {
 	@Override
 	public void estrategia() {
 		Random rd = new Random();
+		Robot oponente=objetivoEnMira();
 		while (tieneEstamina()) {
 			
 			switch (rd.nextInt(4)) {
@@ -61,8 +62,8 @@ public class Descompuesto extends Robot {
 				break;
 			}
 
-			if (objetivoEnMira()) {
-				dispara();
+			if (oponente.valor) {
+				dispara(oponente);
 			}
 
 			switch (rd.nextInt(2)) {
@@ -73,9 +74,9 @@ public class Descompuesto extends Robot {
 				girarDerecha();
 				break;
 			}
-
-			if (objetivoEnMira()) {
-				dispara();
+			
+			if (oponente.valor) {
+				dispara(oponente);
 			}
 		}
 	}

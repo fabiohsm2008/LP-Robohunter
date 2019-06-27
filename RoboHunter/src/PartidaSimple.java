@@ -53,16 +53,17 @@ public class PartidaSimple extends Partida implements Runnable {
 	 */
 	@Override
 	public void jugar() {
+
 		jugador1.recibeEstamina(MAX_ESTAMINA);
 		jugador2.recibeEstamina(MAX_ESTAMINA);
 
-		if (jugador1.disparoEnSuTurno() && jugador1.objetivoEnMira()) {
-			if (jugador2.disparoEnSuTurno() && jugador2.objetivoEnMira()) {
+		if (jugador1.disparoEnSuTurno() && jugador1.objetivoEnMira().valor) {
+			if (jugador2.disparoEnSuTurno() && jugador2.objetivoEnMira().valor) {
 				winner = null;
 			} else {
 				winner = jugador1;
 			}
-		} else if (jugador2.disparoEnSuTurno() && jugador2.objetivoEnMira()) {
+		} else if (jugador2.disparoEnSuTurno() && jugador2.objetivoEnMira().valor) {
 			winner = jugador2;
 		}
 

@@ -82,9 +82,10 @@ Lenguajes de programación (CCOMP 7-1)
 
    Encargado: Fabio
    
-   Estado: Incompleto
+   Estado: Completo
    
-   Comentarios:
+   Comentarios: 
+   El código base de PartidaTorneo tenía un error de puntero nulo que se solucionó añadiendo un tablero para cada juego del torneo.
    
    
 ### 9. Establecer criterio de distancia:

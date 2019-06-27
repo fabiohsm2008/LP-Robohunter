@@ -7,9 +7,10 @@ Lenguajes de programación (CCOMP 7-1)
 
    Encargada: Melissa
    
-   Estado: Incompleto
+   Estado: Completo
    
    Comentarios:
+   Función: detectarParada()
    
 
 ### 2. Tiempo (máx 60sec). Usar threads. Cambiarlo en Modo Torneo.

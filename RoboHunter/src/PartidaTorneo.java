@@ -42,6 +42,9 @@ public class PartidaTorneo {
 
 		for (int i = 0; i < jugadores.size(); i++) {
 			for (int j = i + 1; j < jugadores.size(); j++) {
+				Tablero tablero = null;
+				tablero = Tablero.getInstance();
+				tablero.colocaJugadores(jugadores.get(i), jugadores.get(j));
 				PartidaMultiple partidaMultiple = new PartidaMultiple(jugadores.get(i), jugadores.get(j));
 				partidaMultiple.jugar();
 
